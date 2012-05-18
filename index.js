@@ -102,7 +102,7 @@ module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 					}
 					buf.push(");\n");
 				}
-				buf.push("},\n");				
+				buf.push("},\n");
 			}
 			addLocale("", "");
 			var locales = files.slice(0);

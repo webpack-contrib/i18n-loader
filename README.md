@@ -35,6 +35,25 @@ locale(function() {
 });
 ```
 
+### options
+
+You should tell the loader about all your locales, if you want to load them once
+and than want to use them synchronous.
+
+``` javascript
+{
+	"i18n": {
+		"locales": [
+			"de",
+			"de-de",
+			"fr"
+		],
+		// "bundleTogether": false
+		// this can disable the bundling of locales
+	}
+}
+```
+
 ### alternative calls
 
 ``` javascript
