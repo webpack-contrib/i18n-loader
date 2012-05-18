@@ -1,6 +1,6 @@
 {
 	"name": "i18n-loader",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "Tobias Koppers @sokra",
 	"description": "i18n loader module for webpack",
 	"licenses": [

@@ -137,6 +137,14 @@ module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 			buf.push("\n");
 			buf.push("function use(locale) {\n");
 			if(requireAsync) {
+				buf.push("  if(typeof locale === 'function') {\n");
+				buf.push("    exports.call = function() {\n");
+				buf.push("      return locale.call.apply(locale, arguments);\n");
+				buf.push("    }\n");
+				buf.push("    exports.apply = function() {\n");
+				buf.push("      return locale.apply.apply(locale, arguments);\n");
+				buf.push("    }\n");
+				buf.push("  }\n");
 				buf.push("  for(var p in locale) exports[p] = locale[p];\n");
 				buf.push("  var c = cbs; cbs = null;\n");
 				buf.push("  for(var i = 0; i < c.length; i++) c[i](exports);\n");
