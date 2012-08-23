@@ -1,4 +1,4 @@
-require = require("webpack/require-polyfill")(require.valueOf());
+require = require("enhanced-require")(module);
 
 module.exports = function() {
 	var loaderSign = this.request.indexOf("!");

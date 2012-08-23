@@ -1,4 +1,4 @@
-require = require("webpack/require-polyfill")(require.valueOf());
+require = require("enhanced-require")(module);
 
 function mergeObj(target, source) {
 	for(var p in source) {
