@@ -32,7 +32,7 @@ function findFilesCommon(folder, filePostfix, callback, readdir, stat) {
 			count--;
 			if(count == 0) {
 				if(errors.length > 0)
-					callback("cannot find files: " + errors.join("\n"));
+					callback(new Error("cannot find files: " + errors.join("\n")));
 				else
 					callback(null, result);
 			}
@@ -65,7 +65,7 @@ module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 		remReq = fileMatch[1];
 		var file = fileMatch[2];
 		var filedir = path.dirname(file);
-		var filebase = path.basename(file)
+		var filebase = path.basename(file);
 		var cb = this.async();
 		var configuredLocales = this.options && this.options.i18n && this.options.i18n.locales;
 		var dontBundleTogether = this.options && this.options.i18n && (this.options.i18n.bundleTogether === false);
@@ -75,11 +75,11 @@ module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 		  (filedir, filebase, function(err, files) {
 			if(err) return cb(err);
 			var buf = [];
-			buf.push("var cbs = [];\n");
 			if(requireAsync) {
+				buf.push("var cbs = [];\n");
 				buf.push("exports = module.exports = function(cb) {\n");
 				buf.push("  if(cbs) cbs.push(cb);\n");
-				buf.push("  else cb();\n");
+				buf.push("  else cb(exports);\n");
 				buf.push("}\n");
 				buf.push("\n");
 			}
