@@ -31,7 +31,7 @@ module.exports = function() {
 				next(i+1);
 			});
 		} else {
-			cb(null, "module.exports =\n\t" + JSON.stringify(result) + ";");
+			cb(null, "module.exports = " + JSON.stringify(result, undefined, "\t") + ";");
 		}
 	}
 	next(0);
