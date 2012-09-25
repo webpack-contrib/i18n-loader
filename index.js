@@ -84,7 +84,7 @@ function findFilesSync(folder, filePostfix, callback) {
  */
 module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 	chuckPrefix = chuckPrefix || "i18n";
-	return function(content) {
+	var loader = function(content) {
 		// split the request into i18n-loader, locale loader, directory and filename
 		var loaderSign = this.request.indexOf("!");
 		var remReq = this.request.substr(loaderSign);
@@ -193,4 +193,6 @@ module.exports = function(rootLoader, localeLoader, requireAsync, chuckPrefix) {
 			cb(null, buf.join(""));
 		});
 	}
+	loader.seperable = true;
+	return loader;
 }
